@@ -26,13 +26,26 @@ This is a custom WordPress theme designed to leverage Gutenberg blocks powered b
     git clone https://github.com/flyingcoder/genkiz-theme.git
    ```
 
-### Step 1: Clone the Theme
+### Step 2: Install Dependencies
 
-1. Navigate to your WordPress themes directory. This is typically located at:
+1. Navigate into the theme directory:
    ```bash
-    cd /path/to/your/wordpress/wp-content/themes/
+    cd genkiz
    ```
-2. Clone the theme repository using git:
+2. Install the npm packages:
    ```bash
-    git clone https://github.com/flyingcoder/genkiz-theme.git
+    npm install
    ```
+
+### Step 3: Build the Theme
+
+1. Run the build process to compile the JavaScript and CSS files:
+   ```bash
+    npm run build
+   ```
+
+### Step 4: Activate the Theme
+
+1. Log in to your WordPress admin dashboard.
+2. Go to Appearance > Themes.
+3. Find Genkiz theme in the list and click on the Activate button.
