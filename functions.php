@@ -7,9 +7,20 @@ function genkiz_theme_setup()
 }
 add_action('after_setup_theme', 'genkiz_theme_setup');
 
-function my_custom_blocks()
+function genkiz_blocks()
 {
-    register_block_type(get_template_directory() . '/build/featured-offering-block/block.json');
-    //register_block_type( get_template_directory() . '/build/testimonial/block.json' );
+    $block_json_path = get_template_directory() . '/build/featured-offering-block/block.json';
+
+    if (file_exists($block_json_path)) {
+        register_block_type_from_metadata($block_json_path);
+    }
 }
-add_action('init', 'my_custom_blocks');
+add_action('init', 'genkiz_blocks');
+
+function my_theme_setup()
+{
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'yourthemename'),
+    ));
+}
+add_action('after_setup_theme', 'my_theme_setup');

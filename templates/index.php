@@ -1,3 +1,1 @@
-<?php
 
-//the golden silence

@@ -29,13 +29,17 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit(attributes, setAttributes) {
+
+import { MediaUpload, RichText, URLInputButton } from '@wordpress/block-editor';
+import { Button } from '@wordpress/components';
+
+export default function Edit({attributes, setAttributes}) {
 	const { title, subtitle, link, text, image } = attributes;
 	
 	const onImageSelect = (media) => setAttributes({ image: media.url });
 	
 	return (
-		<div className="custom-block">
+		<div className="featured-offering-block">
 			<InspectorControls>
 				<PanelBody title="Link Settings">
 					<URLInputButton
