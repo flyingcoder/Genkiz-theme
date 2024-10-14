@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "genkiz/featured-offering-block",
+	"version": "0.1.0",
+	"title": "Blocks Featured Offering Block",
+	"category": "widgets",
+	"icon": "columns",
+	"description": "Two column block for featured offering.",
+	"example": {},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"subtitle": {
+			"type": "string",
+			"default": ""
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		},
+		"image": { 
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "blocks/featured-offering-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

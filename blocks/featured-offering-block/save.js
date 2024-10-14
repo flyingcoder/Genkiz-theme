@@ -18,7 +18,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function save() {
 	return (
 		<p { ...useBlockProps.save() }>
-			{ 'Blocks Testimonial – hello from the saved content!' }
+			{ 'Blocks Featured Offering Block – hello from the saved content!' }
 		</p>
 	);
 }
