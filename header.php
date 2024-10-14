@@ -2,7 +2,7 @@
 /**
  * The header for our theme
  *
- * @package YourThemeName
+ * @package Genkiz
  */
 ?>
 
@@ -18,16 +18,6 @@
 </head>
 <body <?php body_class(); ?>>
     <header>
-        <div class="site-branding">
-            <?php if (is_front_page() && is_home()): ?>
-                        <h1 class="site-title"><?php bloginfo('name'); ?></h1>
-            <?php else: ?>
-                        <p class="site-title"><?php bloginfo('name'); ?></p>
-            <?php endif; ?>
-
-            <p class="site-description"><?php bloginfo('description'); ?></p>
-        </div>
-
         <nav>
             <?php
             wp_nav_menu(array(

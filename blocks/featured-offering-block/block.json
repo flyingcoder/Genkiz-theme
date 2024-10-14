@@ -3,11 +3,11 @@
 	"apiVersion": 3,
 	"name": "genkiz/featured-offering-block",
 	"version": "0.1.0",
-	"title": "Blocks Featured Offering Block",
-	"category": "widgets",
+	"title": "Featured Offering",
+	"category": "common",
 	"icon": "columns",
+	"keywords": [ "custom", "block" ],
 	"description": "Two column block for featured offering.",
-	"example": {},
 	"attributes": {
 		"title": {
 			"type": "string",

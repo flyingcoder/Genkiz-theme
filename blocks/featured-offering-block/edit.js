@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -30,58 +30,51 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 
-import { MediaUpload, RichText, URLInputButton } from '@wordpress/block-editor';
-import { Button } from '@wordpress/components';
+import { Button, TextControl } from '@wordpress/components';
 
-export default function Edit({attributes, setAttributes}) {
-	const { title, subtitle, link, text, image } = attributes;
-	
-	const onImageSelect = (media) => setAttributes({ image: media.url });
-	
+const Edit = ( { attributes, setAttributes } ) => {
+	const { image, link, text, title, subtitle } = attributes;
+
+	const onSelectImage = ( newImage ) => {
+		setAttributes( { image: newImage.url } );
+	};
+
 	return (
-		<div className="featured-offering-block">
-			<InspectorControls>
-				<PanelBody title="Link Settings">
-					<URLInputButton
-						label="Link"
-						onChange={(value) => setAttributes({ link: value })}
-						url={link}
-					/>
-				</PanelBody>
-			</InspectorControls>
-
-			<MediaUpload
-				onSelect={onImageSelect}
-				allowedTypes={['image']}
-				render={({ open }) => (
-					<Button onClick={open} className="image-button">
-						{image ? (
-							<img src={image} alt="Selected" />
-						) : (
-							'Upload Image'
-						)}
-					</Button>
-				)}
+		<div { ...useBlockProps() }>
+			<MediaUploadCheck>
+				<MediaUpload
+					onSelect={ onSelectImage }
+					allowedTypes={ ['image'] }
+					value={ image ? [ image ] : [] }
+					render={ ( { open } ) => (
+						<Button onClick={ open } className={ image ? 'image-button' : 'button button-large' }>
+							{ ! image ? 'Upload Image' : <img src={ image } alt={ title } /> }
+						</Button>
+					) }
+				/>
+			</MediaUploadCheck>
+			<TextControl
+				label="Title"
+				value={ title }
+				onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
 			/>
-
-			<RichText
-				tagName="h2"
-				value={title}
-				onChange={(value) => setAttributes({ title: value })}
-				placeholder="Enter title"
+			<TextControl
+				label="Subtitle"
+				value={ subtitle }
+				onChange={ ( newValue ) => setAttributes( { subtitle: newValue } ) }
 			/>
-			<RichText
-				tagName="h3"
-				value={subtitle}
-				onChange={(value) => setAttributes({ subtitle: value })}
-				placeholder="Enter subtitle"
+			<TextControl
+				label="Link"
+				value={ link }
+				onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
 			/>
-			<RichText
-				tagName="p"
-				value={text}
-				onChange={(value) => setAttributes({ text: value })}
-				placeholder="Enter content"
+			<TextControl
+				label="Text"
+				value={ text }
+				onChange={ ( newValue ) => setAttributes( { text: newValue } ) }
 			/>
 		</div>
 	);
-}
+};
+
+export default Edit;

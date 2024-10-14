@@ -15,10 +15,19 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+
+const Save = ( { attributes } ) => {
+	const { image, link, text, title, subtitle } = attributes;
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Blocks Featured Offering Block – hello from the saved content!' }
-		</p>
+		<div { ...useBlockProps.save() } className="p-4 bg-white rounded shadow">
+			{ image && <img src={ image } alt={ title } className="mb-4 rounded" /> }
+			<h2 className="text-2xl font-bold mb-2">{ title }</h2>
+			<h3 className="text-xl text-gray-600 mb-2">{ subtitle }</h3>
+			<p className="text-gray-800 mb-4">{ text }</p>
+			{ link && <a href={ link } className="text-blue-500 hover:underline">{ link }</a> }
+		</div>
 	);
-}
+};
+
+export default Save;

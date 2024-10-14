@@ -16,11 +16,3 @@ function genkiz_blocks()
     }
 }
 add_action('init', 'genkiz_blocks');
-
-function my_theme_setup()
-{
-    register_nav_menus(array(
-        'primary' => __('Primary Menu', 'yourthemename'),
-    ));
-}
-add_action('after_setup_theme', 'my_theme_setup');

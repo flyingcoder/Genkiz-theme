@@ -2,7 +2,7 @@
 /**
  * The main template file
  *
- * @package YourThemeName
+ * @package Genkiz
  */
 
 get_header(); ?>
@@ -12,16 +12,21 @@ get_header(); ?>
     if (have_posts()):
         while (have_posts()):
             the_post();
-            get_template_part('template-parts/content', get_post_type());
+            ?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                        <?php
+                        the_title('<h2 class="entry-title">', '</h2>');
+
+
+                        the_content();
+                        ?>
+                    </article>
+                    <?php
         endwhile;
-
-        the_posts_navigation();
-
     else:
-        get_template_part('template-parts/content', 'none');
+        get_template_part('template-parts/content', 'page');
     endif;
     ?>
 </main>
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
