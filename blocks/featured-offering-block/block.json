@@ -25,6 +25,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"link_label": {
+			"type": "string",
+			"default": ""
+		},
 		"image": { 
 			"type": "string",
 			"default": ""

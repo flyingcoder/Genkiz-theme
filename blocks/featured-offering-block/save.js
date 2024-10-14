@@ -17,15 +17,22 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 
 const Save = ( { attributes } ) => {
-	const { image, link, text, title, subtitle } = attributes;
+	const { image, link, text, title, link_label, subtitle } = attributes;
 
 	return (
-		<div { ...useBlockProps.save() } className="p-4 bg-white rounded shadow">
-			{ image && <img src={ image } alt={ title } className="mb-4 rounded" /> }
-			<h2 className="text-2xl font-bold mb-2">{ title }</h2>
-			<h3 className="text-xl text-gray-600 mb-2">{ subtitle }</h3>
-			<p className="text-gray-800 mb-4">{ text }</p>
-			{ link && <a href={ link } className="text-blue-500 hover:underline">{ link }</a> }
+		<div { ...useBlockProps.save() } className="my-10 mx-10">
+			<div className="title">
+				<h1 className="text-center text-4xl font-semibold ">{ title }</h1>
+				<h2 className="text-center text-2xl font-regular ">{ subtitle }</h2>
+			</div>
+			<div className="flex mt-10 gap-10 mx-10">
+				<div className="w-1/2 font-regular text-lg flex flex-wrap ">
+				{ text }
+				{ link && <a href={ link } className="border-[1px] py-3 px-8 mt-10 w-max mx-auto">{ link_label }</a> }
+				</div>
+				{ image && <div  className='w-1/2 bg-cover' style={{ backgroundImage: `url(${image})` }}> </div>}
+				</div>
+			
 		</div>
 	);
 };

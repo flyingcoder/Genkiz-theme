@@ -33,7 +33,7 @@ import './editor.scss';
 import { Button, TextControl } from '@wordpress/components';
 
 const Edit = ( { attributes, setAttributes } ) => {
-	const { image, link, text, title, subtitle } = attributes;
+	const { image, link, text, title, link_label, subtitle } = attributes;
 
 	const onSelectImage = ( newImage ) => {
 		setAttributes( { image: newImage.url } );
@@ -67,6 +67,11 @@ const Edit = ( { attributes, setAttributes } ) => {
 				label="Link"
 				value={ link }
 				onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
+			/>
+			<TextControl
+				label="Link label"
+				value={ link_label }
+				onChange={ ( newValue ) => setAttributes( { link_label: newValue } ) }
 			/>
 			<TextControl
 				label="Text"
