@@ -1,0 +1,30 @@
+{
+  "name": "Genkiz",
+  "version": "1.0.0",
+  "description": "A custom WordPress theme with Gutenberg blocks",
+  "main": "blocks/index.js",
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=blocks",
+    "start": "wp-scripts start --webpack-src-dir=blocks",
+    "lint": "wp-scripts lint",
+    "test": "wp-scripts test"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^14.4.0",
+    "@wordpress/blocks": "^13.9.0",
+    "@wordpress/components": "^28.9.0",
+    "@wordpress/element": "^6.9.0",
+    "@wordpress/i18n": "^5.9.0"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.1.0"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "gutenberg",
+    "block"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
