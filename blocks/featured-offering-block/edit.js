@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -40,44 +40,56 @@ const Edit = ( { attributes, setAttributes } ) => {
 	};
 
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...useBlockProps()  } className='box flex flex-wrap'>
+			<TextControl
+				
+				className='w-full'
+				label="Title"
+				value={ title }
+				onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
+			/>
+			<TextControl
+				className='w-full'
+				label="Subtitle"
+				value={ subtitle }
+				onChange={ ( newValue ) => setAttributes( { subtitle: newValue } ) }
+			/>
+			<div className='w-1/2'>
+				<RichText
+					tagName="div"
+					value={ text }
+					onChange={ ( newValue ) => setAttributes( { text: newValue } ) }
+					placeholder="Write something..."
+				/>
+				<TextControl
+					label="Link"
+					value={ link }
+					onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
+				/>
+				<TextControl
+					label="Link label"
+					value={ link_label }
+					onChange={ ( newValue ) => setAttributes( { link_label: newValue } ) }
+				/>
+			</div>
 			<MediaUploadCheck>
 				<MediaUpload
 					onSelect={ onSelectImage }
 					allowedTypes={ ['image'] }
 					value={ image ? [ image ] : [] }
 					render={ ( { open } ) => (
-						<Button onClick={ open } className={ image ? 'image-button' : 'button button-large' }>
-							{ ! image ? 'Upload Image' : <img src={ image } alt={ title } /> }
-						</Button>
+						<div className='w-1/2 text-center'>
+							<Button onClick={ open } className={ image ? 'mx-auto w-[400px] h-[400px] image-button' : 'button button-large' }>
+								{ 
+									! image 
+									? 'Upload Image' 
+									: <img width="400" className='max-h-[400px]' src={ image } alt='' />
+								}
+							</Button>
+						</div>
 					) }
 				/>
 			</MediaUploadCheck>
-			<TextControl
-				label="Title"
-				value={ title }
-				onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
-			/>
-			<TextControl
-				label="Subtitle"
-				value={ subtitle }
-				onChange={ ( newValue ) => setAttributes( { subtitle: newValue } ) }
-			/>
-			<TextControl
-				label="Link"
-				value={ link }
-				onChange={ ( newValue ) => setAttributes( { link: newValue } ) }
-			/>
-			<TextControl
-				label="Link label"
-				value={ link_label }
-				onChange={ ( newValue ) => setAttributes( { link_label: newValue } ) }
-			/>
-			<TextControl
-				label="Text"
-				value={ text }
-				onChange={ ( newValue ) => setAttributes( { text: newValue } ) }
-			/>
 		</div>
 	);
 };
