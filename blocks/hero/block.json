@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "genkiz/hero",
+	"version": "0.1.0",
+	"title": "Blocks Hero",
+	"category": "common",
+	"icon": "smiley",
+	"description": "Example block scaffolded with Create Block tool.",
+	"keywords": [],
+	"attributes": {
+		"color": {
+			"type": "string",
+			"default": "#000"
+		}
+	},
+	"supports": {
+		"color": {
+			"link": true,
+			"gradients": true
+		}
+	},
+	"textdomain": "blocks/hero",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
