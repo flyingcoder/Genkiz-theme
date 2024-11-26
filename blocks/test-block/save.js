@@ -17,19 +17,38 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 
 const Save = ( { attributes } ) => {
-	const {title, link_left, link_middle, blink_right, link_label_left, link_text_middle, link_text_right, image} = attributes;
+	const {title, link_1, link_2, link_3, link_4, link_label_1, link_label_2, link_label_3, link_label_4, image} = attributes;
 
 	return (
-		<div { ...useBlockProps.save() } >
-			{ image && <div  className='my-10 mx-10 ' style={{ backgroundImage: `url(${image})` }}>
-				<div className="title">
-					<h1 className="text-center text-4xl font-semibold">
+		<div { ...useBlockProps.save() } className=' m-0'>
+			{ image && <div  className='flex flex-wrap justify-center content-center h-[500px]' style={{ backgroundImage: `url(${image})` }}>
+				<div className="title w-full">
+					<h1 className="leading-[55px] m-auto w-max text-center text-[55px] font-normal bg-[#002960] py-[10px] px-[5rem] my-[20px] text-white">
 						{ title }
 					</h1>
-					<div className="w-1/2 font-regular text-lg flex flex-wrap">
-						{ link_left && <a href={ link_left } className="border-[1px] py-2 px-16 mt-10 w-max mx-auto border-[#002960] text-[#002960]">{ link_label_left }</a> }
-					</div>
 				</div>
+				<div className="w-full flex flex-wrap justify-center gap-5 py-[15px]">
+						<div className="w-max ">
+							{link_1 && link_label_1 && (
+								<a href={ link_1 } className="shadow-md rounded-sm font-regular text-lg w-full py-[15px] px-16 mx-auto text-[#002960] bg-white">{ link_label_1 }</a>
+							)}
+						</div>
+						<div className="w-max">
+							{link_2 && link_label_2 && (
+								<a href={ link_2 } className="shadow-md rounded-sm font-regular text-lg w-full py-[15px] px-16 mx-auto text-[#002960] bg-white">{ link_label_2 }</a>
+							)}
+						</div>
+						<div className="w-max ">
+							{link_3 && link_label_3 && (
+								<a href={ link_3 } className="shadow-md rounded-sm font-regular text-lg w-full py-[15px] px-16  mx-auto text-[#002960] bg-white">{ link_label_3 }</a>
+							)}
+						</div>
+						<div className="w-max ">
+							{link_4 && link_label_4 && (
+								<a href={ link_4 } className="shadow-md rounded-sm font-regular text-lg w-full py-[15px] px-16  mx-auto text-[#002960] bg-white">{ link_label_4 }</a>
+							)}
+						</div>
+					</div>
 			</div> }
 		</div>
 	);

@@ -1,109 +1,157 @@
 /**
  * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { 
+    useBlockProps, 
+    InspectorControls, 
+    MediaUpload, 
+    MediaUploadCheck 
+} from '@wordpress/block-editor';
 
 /**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ * Import WordPress UI components.
+ */
+import { 
+    TextControl, 
+    Button, 
+    PanelBody, 
+    PanelRow 
+} from '@wordpress/components';
+
+/**
+ * Import styles.
  */
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
+const Edit = ({ attributes, setAttributes }) => {
+    const {title, link_1, link_2, link_3, link_4, link_label_1, link_label_2, link_label_3, link_label_4, image} = attributes;
 
-import { TextControl , Button } from '@wordpress/components';
+    // Handle image selection from MediaUpload
+    const onSelectImage = (newImage) => {
+        setAttributes({ image: newImage.url });
+    };
 
-const Edit = ( { attributes, setAttributes } ) => {
-	const {title, link_left, link_middle, link_right, link_label_left, link_label_middle, link_label_right, image} = attributes;
+    // Apply selected image as background style
+    const blockStyle = {
+        backgroundImage: image ? `url(${image})` : 'none',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '300px',
+    };
 
-	const onSelectImage = ( newImage ) => {
-		setAttributes( { image: newImage.url } );
-	};
+    return (
+        <>
+            {/* InspectorControls for the Block Settings Panel */}
+            <InspectorControls>
+                <PanelBody title={__('Background Image')} initialOpen={true}>
+                    <PanelRow>
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={onSelectImage}
+                                allowedTypes={['image']}
+                                value={image}
+                                render={({ open }) => (
+                                    <Button 
+                                        onClick={open} 
+                                        isSecondary 
+                                        className="image-upload-button"
+                                    >
+                                        {image ? __('Replace Image') : __('Select Image')}
+                                    </Button>
+                                )}
+                            />
+                        </MediaUploadCheck>
+                    </PanelRow>
+                </PanelBody>
 
-	return (
-		<div { ...useBlockProps()  } className='box flex flex-wrap justify-between max-w-[840px] m-auto'>
-
-			<TextControl
-				className='w-full'
-				label="Title"
-				value={ title }
-				onChange={ ( newValue ) => setAttributes( { title: newValue } ) }
-			/>
-			<div className='w-[30%]'>
-				<TextControl
-					label="Link"
-					value={ link_left }
-					onChange={ ( newValue ) => setAttributes( { link_left: newValue } ) }
-				/>
-				<TextControl
-					label="Link label"
-					value={ link_label_left }
-					onChange={ ( newValue ) => setAttributes( { link_label_left: newValue } ) }
-				/>
-			</div>
-			<div className='w-[30%]'>
-				<TextControl
-					label="Link"
-					value={ link_middle }
-					onChange={ ( newValue ) => setAttributes( { link_middle: newValue } ) }
-				/>
-				<TextControl
-					label="Link label"
-					value={ link_label_middle }
-					onChange={ ( newValue ) => setAttributes( { link_label_middle: newValue } ) }
-				/>
-			</div>
-			<div className='w-[30%]'>
-				<TextControl
-					label="Link"
-					value={ link_right }
-					onChange={ ( newValue ) => setAttributes( { link_right: newValue } ) }
-				/>
-				<TextControl
-					label="Link label"
-					value={ link_label_right }
-					onChange={ ( newValue ) => setAttributes( { link_label_right: newValue } ) }
-				/>
-			</div>
-			<MediaUploadCheck>
-				<MediaUpload
-					onSelect={ onSelectImage }
-					allowedTypes={ ['image'] }
-					value={ image ? [ image ] : [] }
-					render={ ( { open } ) => (
-						<div className='w-full text-center'>
-							<Button onClick={ open } className={ image ? 'mx-auto w-[400px] h-[400px] image-button' : 'button button-large' }>
-								{ 
-									! image 
-									? 'Upload Image' 
-									: <img width="400" className='max-h-[400px]' src={ image } alt='' />
-								}
-							</Button>
+                {/* Link Settings */}
+                <PanelBody title={__('Link Options')} initialOpen={false}>
+						<div className='mb-5'>
+							<h1>Button 1test</h1>
+							<TextControl
+								className='mb-0'
+								label="Link"
+								value={link_1}
+								onChange={(newValue) => setAttributes({ link_1: newValue })}
+							/>
+							<TextControl
+								label="Label"
+								value={link_label_1}
+								onChange={(newValue) => setAttributes({ link_label_1: newValue })}
+							/>
 						</div>
-					) }
-				/>
-			</MediaUploadCheck>
-		</div>
-	);
+						<div className='mb-5'>
+							<h1>Button 2</h1>
+							<TextControl
+								label="Link"
+								value={link_2}
+								onChange={(newValue) => setAttributes({ link_2: newValue })}
+							/>
+							<TextControl
+								label="Label"
+								value={link_label_2}
+								onChange={(newValue) => setAttributes({ link_label_2: newValue })}
+							/>
+						</div>
+						<div>
+							<h1>Button 3</h1>
+							<TextControl
+								label="Link"
+								value={link_3}
+								onChange={(newValue) => setAttributes({ link_3: newValue })}
+							/>
+							<TextControl
+								label="Label"
+								value={link_label_3}
+								onChange={(newValue) => setAttributes({ link_label_3: newValue })}
+							/>
+						</div>
+                        <div>
+							<h1>Button 4</h1>
+							<TextControl
+								label="Link"
+								value={link_4}
+								onChange={(newValue) => setAttributes({ link_4: newValue })}
+							/>
+							<TextControl
+								label="Label"
+								value={link_label_4}
+								onChange={(newValue) => setAttributes({ link_label_4: newValue })}
+							/>
+						</div>
+                </PanelBody>
+            </InspectorControls>
+
+            {/* Block Content */}
+            <div {...useBlockProps()} style={blockStyle} className="box flex flex-wrap justify-between max-w-[840px] m-auto">
+                <TextControl
+                    className="w-1/2 m-auto"
+                    label="Title"
+                    value={title}
+                    onChange={(newValue) => setAttributes({ title: newValue })}
+                />
+                <div className="w-full flex flex-wrap justify-center gap-5">
+					<div className="w-max">
+						{ link_label_1 && <button  className="font-regular text-lg w-full border-[1px] py-2 px-16  mx-auto border-[#002960] text-[#002960] bg-white">{ link_label_1 }</button> }
+					</div>
+					<div className="w-max">
+						{ link_label_2 && <button  className="font-regular text-lg w-full border-[1px] py-2 px-16  mx-auto border-[#002960] text-[#002960] bg-white">{ link_label_2 }</button> }
+					</div>
+					<div className="w-max">
+						{ link_label_3 && <button  className=" font-regular text-lg w-full border-[1px] py-2 px-16  mx-auto border-[#002960] text-[#002960] bg-white">{ link_label_3 }</button> }
+					</div>
+                    <div className="w-max">
+						{ link_label_4 && <button  className=" font-regular text-lg w-full border-[1px] py-2 px-16  mx-auto border-[#002960] text-[#002960] bg-white">{ link_label_4 }</button> }
+					</div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Edit;

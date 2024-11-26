@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "genkiz/test-block",
+	"name": "genkiz/text-left-image-right-block",
 	"version": "0.1.0",
-	"title": "Blocks Test Block",
+	"title": "text left",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",
@@ -17,40 +17,12 @@
 			"type":	"string",
 			"default": ""
 		},
-		"link_1": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_2": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_3": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_4": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_label_1": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_label_2": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_label_3": {
-			"type":	"string",
-			"default": ""
-		},
-		"link_label_4": {
+		"description": {
 			"type":	"string",
 			"default": ""
 		}
 	},
-	"textdomain": "blocks/test-block",
+	"textdomain": "blocks/text-left-image-right-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
