@@ -39,6 +39,18 @@ This is a custom WordPress theme designed to leverage Gutenberg blocks powered b
 
 ### Step 3: Build the Theme
 
+> **Note:** 💡 Make sure you have wp-scripts installed on your computer. If not here is how you install it.
+
+```bash
+   npm install -g @wordpress/scripts
+```
+
+Then test the CLI version
+
+```bash
+   wp-scripts --version
+```
+
 1. Run the build process to compile the JavaScript and CSS files:
    ```bash
     npm run build
